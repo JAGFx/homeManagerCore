@@ -3,3 +3,4 @@
 .piolibdeps
 .idea/
 CMakeListsPrivate.txt
+src/Engine/Settings.h

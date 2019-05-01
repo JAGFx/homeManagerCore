@@ -8,13 +8,18 @@
 
 #include "GUI.h"
 
+GUI::GUI() {}
+
+// -------------------------------------
+// -- Mod management
+
 void GUI::init() {
     M5.begin();
     needToRefresh = true;
-    display();
+    update();
 }
 
-void GUI::display() {
+void GUI::update() {
     if ( needToRefresh ) {
         M5.Lcd.fillScreen( BLACK );
         M5.Lcd.fillRect( 0, 0, 320, 50, DARKGREY );
@@ -50,6 +55,12 @@ void GUI::display() {
     }
 }
 
+// -------------------------------------
+
+
+// -------------------------------------
+// -- GUI
+
 void GUI::reset( SmartBox smartBox ) {
     currentSmartBox = smartBox;
     currentName     = "----";
@@ -58,7 +69,7 @@ void GUI::reset( SmartBox smartBox ) {
     
     needToRefresh = true;
     
-    display();
+    update();
 }
 
 void GUI::updateData( SmartBox smartBox, const String name, const String temp, const String lux ) {
@@ -68,5 +79,7 @@ void GUI::updateData( SmartBox smartBox, const String name, const String temp, c
     currentLux      = lux;
     
     needToRefresh = true;
-    display();
+    update();
 }
+
+// -------------------------------------

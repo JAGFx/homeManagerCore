@@ -1,16 +1,14 @@
 
-
-#include "Engine/GUI.h"
+#include "Engine/WSServer.h"
 
 #define DEBOUNCE_DELAY_MS 1000
 
-GUI gui;
+WSServer socketServer = WSServer();
 
-enum BTN {
-    A,
-    B,
-    C
-};
+// -------------------------------------------------
+// --- Debounce M5Stack button
+
+enum BTN { A, B, C };
 
 volatile unsigned long lastMillis = 0;
 
@@ -34,29 +32,38 @@ bool isPressed( BTN btn ) {
     return isPressed;
 }
 
+// -------------------------------------------------
+
+
+// -------------------------------------------------
+// --- Main
+
 // the setup routine runs once when M5Stack starts up
 void setup() {
     Serial.begin( 115200 );
+    socketServer.init();
     
-    gui.init();
+    Serial.println( "Ready !!!!!!" );
 }
 
 // the loop routine runs over and over again forever
 void loop() {
     if ( isPressed( BTN::A ) ) {
         Serial.println( "A pressed" );
-        gui.reset( GUI::SmartBox::Smart1 );
+        socketServer.getGui()->reset( GUI::SmartBox::Smart1 );
     }
     
     if ( isPressed( BTN::B ) ) {
         Serial.println( "B pressed" );
-        gui.reset( GUI::SmartBox::Smart2 );
+        socketServer.getGui()->reset( GUI::SmartBox::Smart2 );
     }
     
     if ( isPressed( BTN::C ) ) {
         Serial.println( "C pressed" );
-        gui.reset( GUI::SmartBox::Smart3 );
+        socketServer.getGui()->reset( GUI::SmartBox::Smart3 );
     }
     
-    gui.display();
+    socketServer.update();
 }
+
+// -------------------------------------------------

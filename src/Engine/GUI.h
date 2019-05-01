@@ -10,9 +10,10 @@
 #define DEV_GUI_H
 
 #include <M5Stack.h>
+#include "IMod.h"
 
 
-class GUI {
+class GUI : public IMod {
 public:
     enum SmartBox {
         Smart1,
@@ -20,21 +21,29 @@ public:
         Smart3,
     };
     
+    GUI();
+    
+    // Mod management
     void init();
     
-    void display();
+    void update();
+    // ----
     
+    // GUI
     void reset( SmartBox smartBox );
     
     void updateData( SmartBox smartBox, const String name, const String temp, const String lux );
+    // ----
 
 private:
+    // GUI
     SmartBox currentSmartBox = SmartBox::Smart1;
     String   currentName     = "Windows";
     String   currentTemp     = "25.5 C";
     String   currentLux      = "1054 lux";
     
     bool needToRefresh = false;
+    // ----
 };
 
 
