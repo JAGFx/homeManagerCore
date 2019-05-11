@@ -13,6 +13,7 @@
 #include "IMod.h"
 #include "Settings.h"
 #include "GUI.h"
+#include "CloudSaver.h"
 #include <WiFiMulti.h>
 #include <WebSocketsServer.h>
 #include <ArduinoJson.h>
@@ -44,6 +45,10 @@ private:
     uint8_t          clientCount     = 0;
     
     void webSocketEvent( uint8_t num, WStype_t type, uint8_t *payload, size_t length );
+    // ----
+    
+    // CloudSaver
+    CloudSaver cloudSaver;
     // ----
 };
 

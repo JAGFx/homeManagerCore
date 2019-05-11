@@ -39,11 +39,15 @@ void WSServer::init() {
     // ---- Websocket setup
     webSocket.begin();
     webSocket.onEvent( std::bind( &WSServer::webSocketEvent, this, _1, _2, _3, _4 ) );
+    
+    // ---- CloudSaver setup
+    cloudSaver.init();
 }
 
 void WSServer::update() {
     getGui()->update();
     webSocket.loop();
+    cloudSaver.update();
 }
 
 GUI *WSServer::getGui() {
@@ -136,7 +140,7 @@ void WSServer::webSocketEvent( uint8_t num, WStype_t type, uint8_t *payload, siz
                     
                     // --- Log in csv file
                     //saveDataInFileForBox( box, tempTmp, lux );
-                    //logOnCLoud( uid, tempTmp, lux );
+                    cloudSaver.logInCloud( uid, String( temp ), String( lux ) );
                     // --- END Log in csv file
                     
                     webSocket.broadcastTXT( output );

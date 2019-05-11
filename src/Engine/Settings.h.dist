@@ -13,9 +13,11 @@
 #define WIFI_PSWD "YourPassword"
 
 #define WEBSOCKET_PORT 80
-#define WEBSOCKET_ID_SMARTBOX_1 "hashIDSMart1"
-#define WEBSOCKET_ID_SMARTBOX_2 "hashIDSMart2"
-#define WEBSOCKET_ID_SMARTBOX_3 "hashIDSMart3"
+#define WEBSOCKET_ID_SMARTBOX_1 "hashIDSmart1"
+#define WEBSOCKET_ID_SMARTBOX_2 "hashIDSmart2"
+#define WEBSOCKET_ID_SMARTBOX_3 "hashIDSmart3"
 
+#define CLOUD_SAVER_ENDPOINT_ADDR "gui.host.fr"
+#define CLOUD_SAVER_ENDPOINT_PORT 80
 
 #endif //DEV_SETTINGS_H
